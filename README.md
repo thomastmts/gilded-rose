@@ -6,5 +6,5 @@ Groupe composé de :
 + HUANG Thomas, 
 + MOHAMED Sanyat, 
 + LEREMON Jordy, 
-+ GUEYE Sokhna Diarra  
++ GUEYE Sokhna Diarra.
  
