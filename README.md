@@ -7,3 +7,4 @@ Groupe composé de :
 + MOHAMED Sanyat, 
 + LEREMON Jordy, 
 + GUEYE Sokhna Diarra 
+ 
