@@ -13,6 +13,14 @@ public class GildedRoseTest {
         gildedRose.updateQuality();
         Assertions.assertThat(item.quality).as("Qualité").isEqualTo(9);
     }     
+        @Test
+	public void updateQualityNEGTest() {
+        Item item= new Item("testItem",-1,10);
+        Item[] items=new Item[]{item};
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+        Assertions.assertThat(item.quality).as("Qualité").isEqualTo(8);
+    }  
         
          @Test
     public void toStringTest() {
