@@ -13,4 +13,9 @@ public class GildedRoseTest {
         gildedRose.updateQuality();
         Assertions.assertThat(item.quality).as("Qualité").isEqualTo(9);
     }       
+         @Test
+    public void toStringTest() {
+        Item stringTestItem = new Item("toStringTestItem", 8, 8);
+        Assertions.assertThat(stringTestItem.toString()).as("Display of an object").isEqualTo("toStringTestItem, 10, 10");
+    }
 }
