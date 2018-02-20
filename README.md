@@ -6,8 +6,6 @@ Badge travis :
 
 Badge Coverage :
 
-[![Coverage Status](https://coveralls.io/repos/github/thomastmts/gilded-rose/badge.svg?branch=master)](https://coveralls.io/github/thomastmts/gilded-rose?branch=master)
-
 [![Coverage Status](https://coveralls.io/repos/github/thomastmts/gilded-rose/badge.svg?branch=master&service=github)](https://coveralls.io/github/thomastmts/gilded-rose?branch=master)
 
 Groupe composé de :
