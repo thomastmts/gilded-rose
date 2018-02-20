@@ -52,11 +52,11 @@ class GildedRose {
         		// S'il reste 6 jours ou moins avant le concert, on augmente de nouveau sa qualité : elle aura augmenté de 3 au final
         		if (items[i].sellIn < 6) {
         			items[i].quality++;
+        			
+        			// Sa qualité tombe à 0 après le concert
+                	if (items[i].sellIn < 0) items[i].quality = 0;
         		}
             }
-        	
-        	// Sa qualité tombe à 0 après le concert
-        	else if (items[i].sellIn < 0) items[i].quality = 0;
         	
 		}
 		
