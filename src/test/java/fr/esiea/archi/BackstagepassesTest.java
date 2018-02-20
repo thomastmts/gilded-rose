@@ -22,6 +22,6 @@ public class BackstagepassesTest {
             Item[] items=new Item[]{backItem};
             GildedRose gildedRose = new GildedRose(items);
             gildedRose.updateQuality();
-            Assertions.assertThat(backItem.quality).as("qualité : ").isEqualTo(4);
+            Assertions.assertThat(backItem.quality).as("qualité : ").isEqualTo(13);
         }
 }
