@@ -15,7 +15,7 @@ public class GildedRoseTest {
     }       
          @Test
     public void toStringTest() {
-        Item stringTestItem = new Item("toStringTestItem", 8, 8);
+        Item stringTestItem = new Item("toStringTestItem", 10, 10);
         Assertions.assertThat(stringTestItem.toString()).as("Display of an object").isEqualTo("toStringTestItem, 10, 10");
     }
 }
