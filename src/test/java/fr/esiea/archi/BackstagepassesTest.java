@@ -14,7 +14,7 @@ public class BackstagepassesTest {
             Item[] items=new Item[]{backItem};
             GildedRose gildedRose = new GildedRose(items);
             gildedRose.updateQuality();
-            Assertions.assertThat(backItem.quality).as("qualité : ").isEqualTo(12);
+            Assertions.assertThat(backItem.getQuality()).as("qualité : ").isEqualTo(12);
         }
             @Test
         public void UpdateQualityBackstageAccessINF6() {
@@ -22,7 +22,7 @@ public class BackstagepassesTest {
             Item[] items=new Item[]{backItem};
             GildedRose gildedRose = new GildedRose(items);
             gildedRose.updateQuality();
-            Assertions.assertThat(backItem.quality).as("qualité : ").isEqualTo(13);
+            Assertions.assertThat(backItem.getQuality()).as("qualité : ").isEqualTo(13);
         }
             @Test
           public void UpdateQualityBackstageAccessNEG() {
@@ -30,7 +30,7 @@ public class BackstagepassesTest {
             Item[] items=new Item[]{backItem};
             GildedRose gildedRose = new GildedRose(items);
             gildedRose.updateQuality();
-            Assertions.assertThat(backItem.quality).as("qualité : ").isEqualTo(0);
+            Assertions.assertThat(backItem.getQuality()).as("qualité : ").isEqualTo(0);
             
         }
 }

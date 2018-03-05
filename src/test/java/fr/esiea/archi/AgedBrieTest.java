@@ -18,7 +18,7 @@ public class AgedBrieTest {
         Item[] items=new Item[]{agedBrie};
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
-        Assertions.assertThat(agedBrie.quality).as("qualité de Aged Brie ").isEqualTo(11);
+        Assertions.assertThat(agedBrie.getQuality()).as("qualité de Aged Brie ").isEqualTo(11);
     }
         
                  @Test
@@ -27,6 +27,6 @@ public class AgedBrieTest {
         Item[] items=new Item[]{agedBrie};
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
-        Assertions.assertThat(agedBrie.quality).as("qualité de Aged Brie ").isEqualTo(12);
+        Assertions.assertThat(agedBrie.getQuality()).as("qualité de Aged Brie ").isEqualTo(12);
     }
 }
