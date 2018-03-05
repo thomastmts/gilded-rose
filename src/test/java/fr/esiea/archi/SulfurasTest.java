@@ -14,7 +14,7 @@ public class SulfurasTest {
             Item[] items=new Item[]{sulfu};
             GildedRose gildedRose = new GildedRose(items);
             gildedRose.updateQuality();
-            Assertions.assertThat(sulfu.quality).as("qualité de Sulfuras : ").isEqualTo(9);
+            Assertions.assertThat(sulfu.getQuality()).as("qualité de Sulfuras : ").isEqualTo(9);
         }
       
       @Test
@@ -23,6 +23,6 @@ public class SulfurasTest {
         Item[] items=new Item[]{sulfuras};
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
-        Assertions.assertThat(sulfuras.sellIn).as("NBJ pour vendre Sulfuras, Hand of Ragnaros").isEqualTo(4);
+        Assertions.assertThat(sulfuras.getSellIn()).as("NBJ pour vendre Sulfuras, Hand of Ragnaros").isEqualTo(4);
     }
 }

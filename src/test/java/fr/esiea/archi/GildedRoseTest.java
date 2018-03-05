@@ -11,7 +11,7 @@ public class GildedRoseTest {
         Item[] items=new Item[]{item};
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
-        Assertions.assertThat(item.quality).as("Qualité").isEqualTo(9);
+        Assertions.assertThat(item.getQuality()).as("Qualité").isEqualTo(9);
     }     
         @Test
 	public void updateQualityNEGTest() {
@@ -19,7 +19,7 @@ public class GildedRoseTest {
         Item[] items=new Item[]{item};
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
-        Assertions.assertThat(item.quality).as("Qualité").isEqualTo(8);
+        Assertions.assertThat(item.getQuality()).as("Qualité").isEqualTo(8);
     }  
         
          @Test
