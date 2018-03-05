@@ -27,7 +27,7 @@ public class App {
 	
     public static void main( String[] args )
     {
-    	//App.run(App.class);
+    	SpringApplication.run(App.class);
     }
     
     @RequestMapping("/create_item")
@@ -37,7 +37,7 @@ public class App {
 		final int id;
 		if (!database.containsValue(c)) {
 			id = sequenceGenerator.incrementAndGet();
-			//c.setId(id);
+			c.setId(id);
 			database.put(id, c);
 			LOGGER.info(c + " created with ID: " + database.inverse().get(c));
 		} else {

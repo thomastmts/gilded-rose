@@ -1,7 +1,11 @@
 package fr.esiea.archi;
 
+import java.util.Objects;
+
 public class Item {
 
+	private Integer id;
+	
     private String name;
 
     private int sellIn;
@@ -13,6 +17,14 @@ public class Item {
         this.sellIn = sellIn;
         this.quality = quality;
     }
+	
+	public Integer getId() {
+		return id;
+	}
+
+	void setId(Integer id) {
+		this.id = id;
+	}
 	
 	public String getName() {
 		return name;
@@ -40,33 +52,12 @@ public class Item {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + quality;
-		result = prime * result + sellIn;
-		return result;
+		return Objects.hash(name, sellIn, quality);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Item other = (Item) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (quality != other.quality)
-			return false;
-		if (sellIn != other.sellIn)
-			return false;
-		return true;
+		return obj instanceof Item && Integer.valueOf(obj.hashCode()).equals(hashCode());
 	}
 	
 	@Override
