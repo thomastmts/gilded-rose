@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 /**
  * Sample web application.
  * Run {@link #main(String[])} to launch.
@@ -25,37 +29,49 @@ import com.google.common.collect.HashBiMap;
 public class App {
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-    private final BiMap<Integer, Item> database = HashBiMap.create();
+    private static final BiMap<Integer, Item> database = HashBiMap.create();
     private final AtomicInteger sequenceGenerator = new AtomicInteger();
 	
     public static void main(String[] args)
     {   
     	SpringApplication.run(App.class);
+        Item[] items = new Item[database.size()];
+        for (int i = 0; i < database.size(); i++) {
+            items[i] = database.get(i);
+        }
+        Runnable updateQualityTask = new GildedRose(items);
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
+        scheduledExecutorService.scheduleAtFixedRate(updateQualityTask, 0L, 1L, TimeUnit.MINUTES);
     }
     
     @RequestMapping("/")
-    List<Item> init() {
+    List<Item> listItems() {
+        
         int id;
 
         Item i1 = new Item("Sulfuras, Hand of Ragnaros", 2, 80);
-        id = sequenceGenerator.incrementAndGet();
-        i1.setId(id);
-        database.put(id, i1);
-
         Item i2 = new Item("Aged Brie", 5, 13);
-        id = sequenceGenerator.addAndGet(1);
-        i2.setId(id);
-        database.put(id, i2);
-
         Item i3 = new Item("Backstage passes to a TAFKAL80ETC concert", 4, 20);
-        id = sequenceGenerator.addAndGet(1);
-        i3.setId(id);
-        database.put(id, i3);
-
         Item i4 = new Item("Confiture", 15, 18);
-        id = sequenceGenerator.addAndGet(1);
-        i4.setId(id);
-        database.put(id, i4);
+        
+        if (!database.containsValue(i1) && !database.containsValue(i2) && !database.containsValue(i3) && !database.containsValue(i4)) {
+        
+            id = sequenceGenerator.incrementAndGet();
+            i1.setId(id);
+            database.put(id, i1);
+
+            id = sequenceGenerator.addAndGet(1);
+            i2.setId(id);
+            database.put(id, i2);
+
+            id = sequenceGenerator.addAndGet(1);
+            i3.setId(id);
+            database.put(id, i3);
+
+            id = sequenceGenerator.addAndGet(1);
+            i4.setId(id);
+            database.put(id, i4);
+        }
 
         return database.entrySet()
                 .stream()
@@ -77,15 +93,11 @@ public class App {
             id = database.inverse().get(c);
             LOGGER.info(c + " already exists with ID: " + database.inverse().get(c));
         }
-        return "<strong>Item " + c.getName() + " created with the ID " + id + ", with sellIn = " + c.getSellIn() + " and with quality = " + c.getQuality() + "</strong>";
+        return "<strong>Item <em style='color: red;'>" + c.getName() + 
+                "</em> created with the ID " + id + 
+                ", with sellIn = " + c.getSellIn() + 
+                " and with quality = " + c.getQuality() + 
+                "</strong>";
     }
 
-    @RequestMapping("/list_items")
-    List<Item> listUsers() {
-
-        return database.entrySet()
-                .stream()
-                .map(Entry::getValue)
-                .collect(Collectors.toList());
-    }
 }
