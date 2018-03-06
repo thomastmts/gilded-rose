@@ -1,6 +1,9 @@
 package fr.esiea.archi;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +27,12 @@ public class App {
 
 	private final BiMap<Integer, Item> database = HashBiMap.create();
 	private final AtomicInteger sequenceGenerator = new AtomicInteger();
+
+	private long[] args;
 	
     public static void main( String[] args )
     {
-    	SpringApplication.run(App.class);
+    	SpringApplication.run(App.class, args);
     }
     
     @RequestMapping("/create_item")
@@ -47,4 +52,12 @@ public class App {
 		return id;
 	}
     
+    @RequestMapping("/list_items")
+	List<Item> listUsers() {
+    	
+		return database.entrySet()
+				.stream()
+				.map(Entry::getValue)
+				.collect(Collectors.toList());
+	}
 }
