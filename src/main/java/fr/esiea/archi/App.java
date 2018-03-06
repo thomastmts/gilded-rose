@@ -28,7 +28,7 @@ public class App {
     private final BiMap<Integer, Item> database = HashBiMap.create();
     private final AtomicInteger sequenceGenerator = new AtomicInteger();
 	
-    public static void main()
+    public static void main(String[] args)
     {   
     	SpringApplication.run(App.class);
     }
@@ -77,7 +77,7 @@ public class App {
             id = database.inverse().get(c);
             LOGGER.info(c + " already exists with ID: " + database.inverse().get(c));
         }
-        return "Item " + c.getName() + " created with the ID " + id + ", with sellIn = " + c.getSellIn() + " and with quality = " + c.getQuality();
+        return "<strong>Item " + c.getName() + " created with the ID " + id + ", with sellIn = " + c.getSellIn() + " and with quality = " + c.getQuality() + "</strong>";
     }
 
     @RequestMapping("/list_items")
