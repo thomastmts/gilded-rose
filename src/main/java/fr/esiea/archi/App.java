@@ -55,7 +55,7 @@ public class App {
 
         Item i1 = new Item("Sulfuras, Hand of Ragnaros", 2, 80);
         Item i2 = new Item("Aged Brie", 5, 13);
-        Item i3 = new Item("Backstage passes to a TAFKAL80ETC concert", 4, 20);
+        Item i3 = new Item("Backstage passes to a TAFKAL80ETC concert", 14, 20);
         Item i4 = new Item("Confiture", 15, 18);
         
         if (!database.containsValue(i1) && !database.containsValue(i2) && !database.containsValue(i3) && !database.containsValue(i4)) {
@@ -84,7 +84,7 @@ public class App {
     }
 
     @RequestMapping("/create_item")
-    String createUser(@RequestParam("name") String name, @RequestParam("sellIn") int sellIn, @RequestParam("quality") int quality) {
+    String createItem(@RequestParam("name") String name, @RequestParam("sellIn") int sellIn, @RequestParam("quality") int quality) {
         Item c = new Item(name, sellIn, quality);
 
         final int id;
@@ -103,6 +103,20 @@ public class App {
                 ", with sellIn = " + c.getSellIn() + 
                 " and with quality = " + c.getQuality() + 
                 "</strong>";
+    }
+    
+    @RequestMapping("/show_item")
+    String showItem(@RequestParam("id") int id){
+        String s = new String();
+        
+        if(database.containsKey(id)){
+            Item c = database.get(id);
+            s = c.toString();
+        } else {
+            s = "Cet ID ne correspond à aucun item dans la base de données.";
+        }
+        
+        return s;
     }
     
     private static void updateRegular() {
