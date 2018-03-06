@@ -1,15 +1,23 @@
 package fr.esiea.archi;
 
-class GildedRose implements Runnable {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+class GildedRose {
     Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
     }
+    
+    public GildedRose() {
+        this.items = new Item[1];
+    }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
 
+        for (int i = 0; i < items.length; i++) {
+            
             // On modifie tous les items sauf Sulfuras
             if (!items[i].getName().equals("Sulfuras, Hand of Ragnaros")) {
 
@@ -79,11 +87,6 @@ class GildedRose implements Runnable {
             }
         }
 
-    }
-
-    @Override
-    public void run() {
-        updateQuality();
     }
     
 }

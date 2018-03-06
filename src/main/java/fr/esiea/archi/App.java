@@ -30,17 +30,22 @@ public class App {
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
     private static final BiMap<Integer, Item> database = HashBiMap.create();
+
     private final AtomicInteger sequenceGenerator = new AtomicInteger();
 	
     public static void main(String[] args){   
     	SpringApplication.run(App.class);
-        Item[] items = new Item[database.size()];
-        for (int i = 0; i < database.size(); i++) {
-            items[i] = database.get(i);
-        }
-        Runnable updateQualityTask = new GildedRose(items);
+        
+        //Runnable updateQualityTask = updateRegular();
         ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(1);
-        scheduledExecutorService.scheduleAtFixedRate(updateQualityTask, 0L, 1L, TimeUnit.MINUTES);
+        scheduledExecutorService.scheduleAtFixedRate(() -> {
+            try{
+                updateRegular();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                LOGGER.error("Exception in scheduled update task", ex);
+            }
+        }, 0L, 15L, TimeUnit.MINUTES);
     }
     
     @RequestMapping("/")
@@ -98,6 +103,23 @@ public class App {
                 ", with sellIn = " + c.getSellIn() + 
                 " and with quality = " + c.getQuality() + 
                 "</strong>";
+    }
+    
+    private static void updateRegular() {
+        LOGGER.info("update");
+        if(database.size() > 0){
+            
+            Item[] items = new Item[database.size()];
+            for (int i = 0; i < database.size(); i++) {
+                items[i] = database.get(i+1);
+            }
+
+            if (items.length > 0) {
+                GildedRose up = new GildedRose(items);
+                up.updateQuality();
+            }
+        }
+        
     }
 
 }
