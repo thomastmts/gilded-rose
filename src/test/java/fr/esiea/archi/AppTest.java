@@ -15,7 +15,7 @@ public class AppTest
      * @param testName name of the test case
      */
     App App;
-    String[] a = {"lol2","lol"};
+    String[] a = {"arg1","arg2"};
     public AppTest(String testName)
     {
         super(testName);

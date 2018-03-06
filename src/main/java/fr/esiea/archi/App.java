@@ -32,8 +32,7 @@ public class App {
     private static final BiMap<Integer, Item> database = HashBiMap.create();
     private final AtomicInteger sequenceGenerator = new AtomicInteger();
 	
-    public static void main(String[] args)
-    {   
+    public static void main(String[] args){   
     	SpringApplication.run(App.class);
         Item[] items = new Item[database.size()];
         for (int i = 0; i < database.size(); i++) {
@@ -93,6 +92,7 @@ public class App {
             id = database.inverse().get(c);
             LOGGER.info(c + " already exists with ID: " + database.inverse().get(c));
         }
+
         return "<strong>Item <em style='color: red;'>" + c.getName() + 
                 "</em> created with the ID " + id + 
                 ", with sellIn = " + c.getSellIn() + 
